@@ -22,7 +22,7 @@ namespace WebAPIClient
 
             foreach (var repository in repositories)
             {
-                Console.WriteLine(repository.name);
+                Console.WriteLine(repository.Name);
             }
         }
     }
