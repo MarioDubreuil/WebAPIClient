@@ -16,6 +16,8 @@ namespace WebAPIClient
                 Console.WriteLine(repository.GitHubHomeUrl);
                 Console.WriteLine(repository.Homepage);
                 Console.WriteLine(repository.Watchers);
+                Console.WriteLine(repository.LastPushUtc);
+                Console.WriteLine(repository.LastPush);
                 Console.WriteLine();
             }
         }
