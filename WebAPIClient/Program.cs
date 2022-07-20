@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Headers;
+using System.Text.Json;
 
 namespace WebAPIClient
 {
@@ -16,10 +17,13 @@ namespace WebAPIClient
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
             client.DefaultRequestHeaders.Add("User-Agent", ".NET Foundation Repository Reporter");
 
-            var stringTask = client.GetStringAsync("https://api.github.com/orgs/dotnet/repos");
+            var streamTask = client.GetStreamAsync("https://api.github.com/orgs/dotnet/repos");
+            var repositories = await JsonSerializer.DeserializeAsync<List<Repository>>(await streamTask);
 
-            var msg = await stringTask;
-            Console.WriteLine(msg);
+            foreach (var repository in repositories)
+            {
+                Console.WriteLine(repository.name);
+            }
         }
     }
 }
